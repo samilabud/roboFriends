@@ -5,43 +5,38 @@ import SearchBox from '../components/SearchBox';
 import MyScroll from '../components/MyScroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
-import  {setSearchField} from '../actions';
+import  {setSearchField, requestRobots} from '../actions';
 
 const mapStateToProps = (state) => {
     return {
-        searchText: state.searchField
+        searchText: state.searchRobots.searchField,
+        robots: state.requestRobots.robots,
+        isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
-        findRobotName: (event) => dispatch(setSearchField(event.target.value))
+        findRobotName: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestRobots: () => dispatch(requestRobots())
     }
 }
 
 
 class App extends Component {
-    constructor(){
-        super();
-        this.state = {
-            robots: []
-        }
-    }
-    
+      
     componentDidMount(){ //Como este metodo es propio de react no tiene que ser arrow function
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then(response=>response.json())
-        .then(users =>this.setState({robots:users}))
+        this.props.onRequestRobots();
     }
   
     render(){
         
-        const { robots } = this.state;
-        const { searchText , findRobotName} = this.props;
+        const { searchText , findRobotName, robots, isPending} = this.props;
         const robotsFiltered = robots.filter(robot=>{
             return robot.name.toLowerCase().includes(searchText.toLocaleLowerCase());
         })
-        if(!robots.length){
+        if(isPending){
             return <h2>Loading...</h2>
         }else{
             return (

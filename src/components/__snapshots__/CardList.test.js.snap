@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing CardList component 1`] = `
+<div>
+  <div
+    className="bg-washed-green dib br3 pa3 ma2 grow bw2 shadow-5"
+  >
+    <img
+      alt="robots"
+      src="https://robohash.org/1?200x200"
+    />
+    <div>
+      <h2>
+        Jhon Snow
+      </h2>
+      <p>
+        jhon.snow@zerotomastery.com
+      </p>
+    </div>
+  </div>
+  <div
+    className="bg-washed-green dib br3 pa3 ma2 grow bw2 shadow-5"
+  >
+    <img
+      alt="robots"
+      src="https://robohash.org/2?200x200"
+    />
+    <div>
+      <h2>
+        Katlin Star
+      </h2>
+      <p>
+        katlin.starw@zerotomastery.com
+      </p>
+    </div>
+  </div>
+</div>
+`;
